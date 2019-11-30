@@ -122,29 +122,34 @@ class _DigitalClockState extends State<DigitalClock> {
 
     return Container(
       color: colors[_Element.background],
-      child: Center(
-        child: Stack(
-          children: <Widget>[
+      child: Transform.scale(
+        scale: 0.95,
+        child: Center(
+          child: Stack(
+            children: <Widget>[
 //            Positioned(
 //                left: 0, top: 0, child: Text("$hour : $minute : $second")),
 //            Positioned(right: 0, bottom: 0, child: Text("$_dateTime")),
-            Center(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: CustomPaint(
-                  painter: MyPainter(_dateTime.millisecond / 1000, 59,
-                      _dateTime.second % 2 == 0),
+              Center(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: CustomPaint(
+                    painter: MyPainter(_dateTime.millisecond / 1000, 59,
+                        _dateTime.second % 2 == 0),
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              left: 148,
-              top: 66,
-              child: SkewBox(),
-            ),
-            Positioned(
-                left: 153, top: 72, child: DigitText("$hour:$minute:$second")),
-          ],
+              Positioned(
+                left: 148,
+                top: 66,
+                child: SkewBox(),
+              ),
+              Positioned(
+                  left: 153,
+                  top: 72,
+                  child: DigitText("$hour:$minute:$second")),
+            ],
+          ),
         ),
       ),
     );
