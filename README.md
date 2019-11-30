@@ -13,3 +13,5 @@ Example [Analog Clock](analog_clock)
 Example [Digital Clock](digital_clock)
 
 <img src='digital_clock/digital.gif' width='350'>
+
+[![Youtube link](https://i9.ytimg.com/vi/kPRY2FNoPyY/mqdefault.jpg?time=1575152903203&sqp=CLzYi-8F&rs=AOn4CLCm9M8dkyBqIQlHjodeADvsEk3KRA)](https://youtu.be/kPRY2FNoPyY) youtube link
