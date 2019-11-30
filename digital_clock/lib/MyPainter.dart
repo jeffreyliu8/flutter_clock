@@ -4,11 +4,11 @@ import 'dart:math';
 class MyPainter extends CustomPainter {
   Paint _activePaint;
   Paint _inactivePaint;
-  Paint _outterCirclePaint;
+  Paint _outerCirclePaint;
   Paint _innerCirclePaint;
 
   double _percent;
-  int _numOfDividerLines = 59;
+  int _numOfDividerLines;
 
   List<Path> pathList = new List();
 
@@ -23,7 +23,7 @@ class MyPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1;
 
-    _outterCirclePaint = Paint()
+    _outerCirclePaint = Paint()
       ..color = Colors.black
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 1;
@@ -37,25 +37,21 @@ class MyPainter extends CustomPainter {
   //private function
   void getAllPaths(Size size) {
     double fanStart = 0;
+
     double fanWidthInDegree =
         (360 - (_numOfDividerLines * _dividerWidthInDegree)) /
             _numOfDividerLines;
 
-    double increaseEffectDegree = 6;
-    double increaseEffectIncDegree = increaseEffectDegree / _numOfDividerLines;
-
-    double bigFanStart = fanStart + increaseEffectIncDegree;
-
     for (var i = 0; i < _numOfDividerLines; i++) {
-//      fanWidthInDegree = fanWidthInDegree - increaseEffectDegree + (increaseEffectIncDegree * i);
+//      debugPrint('start: $fanStart ');
 
       Path path = Path();
       path.arcTo(
           Rect.fromLTWH(
-              _outterCirclePadding,
-              _outterCirclePadding,
-              size.width - _outterCirclePadding * 2,
-              size.height - _outterCirclePadding * 2),
+              _outerCirclePadding,
+              _outerCirclePadding,
+              size.width - _outerCirclePadding * 2,
+              size.height - _outerCirclePadding * 2),
           degToRad(fanStart),
           degToRad(fanWidthInDegree),
           false);
@@ -66,7 +62,8 @@ class MyPainter extends CustomPainter {
               size.height / 4 + _innerCircleYOffset,
               size.width / 2,
               size.height / 2),
-          degToRad(fanStart + fanWidthInDegree),
+          degToRad(
+              fanStart + fanWidthInDegree + _innerCircleRotationOffsetInDegree),
           degToRad(-fanWidthInDegree),
           false);
 
@@ -81,7 +78,7 @@ class MyPainter extends CustomPainter {
   double _innerCircleYOffset = -25;
   double _innerCircleRotationOffsetInDegree = -17;
   double _innerCirclePadding = 1;
-  double _outterCirclePadding = 1;
+  double _outerCirclePadding = 1;
 
   num degToRad(num deg) => deg * (pi / 180.0);
 
@@ -99,9 +96,9 @@ class MyPainter extends CustomPainter {
           size.height / 2,
         ),
         size.width / 2,
-        _outterCirclePaint);
+        _outerCirclePaint);
 
-    int startIndex = 0;
+    int startIndex = 31;
     for (var i = 0; i < _numOfDividerLines; i++) {
       Paint rightColor = _activePaint;
       if (needle > i) {
