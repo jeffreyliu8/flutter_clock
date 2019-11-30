@@ -88,7 +88,8 @@ class _DigitalClockState extends State<DigitalClock> {
       // Update once per second, but make sure to do it at the beginning of each
       // new second, so that the clock is accurate.
       _timer = Timer(
-        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+        Duration(milliseconds: 17) -
+            Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
     });
@@ -130,7 +131,8 @@ class _DigitalClockState extends State<DigitalClock> {
               child: AspectRatio(
                 aspectRatio: 1,
                 child: CustomPaint(
-                  painter: MyPainter(double.parse(second) / 60, 59),
+                  painter: MyPainter(_dateTime.millisecond / 1000, 59,
+                      _dateTime.second % 2 == 0),
                 ),
               ),
             ),

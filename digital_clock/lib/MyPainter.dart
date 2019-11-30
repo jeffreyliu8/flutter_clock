@@ -9,10 +9,11 @@ class MyPainter extends CustomPainter {
 
   double _percent;
   int _numOfDividerLines;
+  bool _isInverseColor;
 
   List<Path> pathList = new List();
 
-  MyPainter(this._percent, this._numOfDividerLines) {
+  MyPainter(this._percent, this._numOfDividerLines, this._isInverseColor) {
     _activePaint = Paint()
       ..color = Colors.red
       ..strokeCap = StrokeCap.round
@@ -101,10 +102,18 @@ class MyPainter extends CustomPainter {
     int startIndex = 31;
     for (var i = 0; i < _numOfDividerLines; i++) {
       Paint rightColor = _activePaint;
-      if (needle > i) {
-        rightColor = _activePaint;
+      if (!_isInverseColor) {
+        if (needle > i) {
+          rightColor = _activePaint;
+        } else {
+          rightColor = _inactivePaint;
+        }
       } else {
-        rightColor = _inactivePaint;
+        if (needle > i) {
+          rightColor = _inactivePaint;
+        } else {
+          rightColor = _activePaint;
+        }
       }
 
       canvas.drawPath(pathList[startIndex], rightColor);
