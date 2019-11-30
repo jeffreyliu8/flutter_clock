@@ -22,3 +22,6 @@ flutter:
     - family: PressStart2P
       fonts:
         - asset: third_party/PressStart2P-Regular.ttf
+    - family: Digital
+      fonts:
+        - asset: third_party/DIGITALDREAMFATSKEWNARROW.ttf

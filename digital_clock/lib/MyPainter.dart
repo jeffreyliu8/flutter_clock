@@ -135,6 +135,6 @@ class MyPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(MyPainter oldDelegate) {
-    return false;
+    return oldDelegate._percent != _percent;
   }
 }

@@ -5,6 +5,7 @@
 import 'dart:async';
 
 import 'package:digital_clock/MyPainter.dart';
+import 'package:digital_clock/SkewBox.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -124,9 +125,9 @@ class _DigitalClockState extends State<DigitalClock> {
       child: Center(
         child: Stack(
           children: <Widget>[
-            Positioned(
-                left: 0, top: 0, child: Text("$hour : $minute : $second")),
-            Positioned(right: 0, bottom: 0, child: Text("$_dateTime")),
+//            Positioned(
+//                left: 0, top: 0, child: Text("$hour : $minute : $second")),
+//            Positioned(right: 0, bottom: 0, child: Text("$_dateTime")),
             Center(
               child: AspectRatio(
                 aspectRatio: 1,
@@ -136,9 +137,30 @@ class _DigitalClockState extends State<DigitalClock> {
                 ),
               ),
             ),
+            Positioned(
+              left: 148,
+              top: 66,
+              child: SkewBox(),
+            ),
+            Positioned(
+                left: 153, top: 72, child: DigitText("$hour:$minute:$second")),
           ],
         ),
       ),
+    );
+  }
+}
+
+class DigitText extends StatelessWidget {
+  final String text;
+
+  DigitText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(fontSize: 16, color: Colors.red, fontFamily: 'Digital'),
     );
   }
 }
